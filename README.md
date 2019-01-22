@@ -1,6 +1,6 @@
 # Football Index Player Tracker
 
-[![Football Index](https://en.wikipedia.org/wiki/File:Football-INDEX-Logo-2018.png)](https://www.footballindex.co.uk/)
+[![Football Index](https://objects.kaxmedia.com/auto/o/49465/1c804b8dff.png)](https://www.footballindex.co.uk/)
 
 ## Description
 
