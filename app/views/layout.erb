@@ -4,7 +4,40 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
+    <% if !logged_in? %>
     <a href="/index"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
+    <% end %>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #254377;
+        padding: 5px;
+      }
+
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
@@ -15,6 +48,14 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <% if logged_in? %>
+    <div class="topnav">
+      <a href="/index"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
+      <a href="/players/players">My Players</a>
+      <a href="/players/new">Add Player</a>
+      <a href="/logout">Log Out</a>
+    </div>
+    <% end %>
     <div class="wrapper">
 
         <%= yield %>
