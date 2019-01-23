@@ -23,6 +23,38 @@ M. Rashford   Man Utd          30              £302.40              £10.08
 G. Higuain    Juventus         10              £38.60                £3.86*
 
 
+#### Whats is the purpose of ActiveRecord?
+The ActiveRecord Ruby gem allows you to map relationships from databases to
+actual Ruby objects. It makes CRUD tasks much more simpler and quicker to
+achieve, bypassing the need to use structured query language.
+
+#### What model and associations will you have and why?
+The first model will be a User model. This will allow you to create an account,
+which provides a User access to their own data on the app.
+
+The second model will be a Player model. This will contain attributes 'name',
+'price', 'team', 'futures', 'quantity' and 'date purchased'. A User will
+input the data for the attributes and be able to persist them to the database.
+
+#### What validations will you use on your models?
+A User will not be able to sign up without all 3 attributes, username, email
+and password. They also can not log in without providing both their email
+and password. Users will not be able to sign up with an email that already
+exists. A flash message will appear if an error occurs.
+
+#### How will you implement an authentication system?
+I will create User authorisation with the Bcrypt gem, and store the User ID in
+a session hash.
+
+#### Who should be able to edit and destroy a model?
+Only the User who's session it is will be allowed to see their own data. They
+will only be allowed to edit and destroy their own data.
+
+#### What will you need to implement to have your application considered a CRUD app?
+A User will be able to create an instance of a Player, view the player by :id,
+edit the players attributes and delete the player if needed.
+
+
 ## Project Review
 Go through your app, and show how it meets the requirements.
 10-15 mins
@@ -58,17 +90,17 @@ BONUS - Display validation failures to user with error messages.
 
 --------------------------------------------------------------------------------
 
-## Football Index
+## Football Index Player Tracker - Structure
 
-*Model
+###Model
 user.rb // User - will have a username, email and password(digest)
           has_many :players
 
 player.rb // Player - will have a name, a team, a price per future(share),
-          futures bought.
+          futures bought and a timestamp for when the shares were bought.
           belongs_to :user
 
-Views
+###Views
 index.erb // Loads a page where a user can sign up or login to the app
 
 layout.erb // Contains the html structure for the website
@@ -83,12 +115,12 @@ layout.erb // Contains the html structure for the website
     create_user.erb // Create a new user, with a username, email and password
     login.erb // Login with an existing account
 
-Controllers
+###Controllers
 application controller // Class Application controller, require environment,
                           configure public folder, views, sessions
                           get '/'
 
-player_controller // get '/players/new'
+player_controller //  get '/players/new'
                       post '/players'
                       get '/players'
                       get '/players/:id'
@@ -101,4 +133,4 @@ users_controller // get '/users/new'
                     post '/users'
                     get '/users/login'
                     post '/login'
-                    get '/logout'*
+                    get '/logout'
