@@ -9,6 +9,16 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "football_index"
   end
 
+  helpers do
+    def current_user
+      @user = User.find_by_id(session[:user_id])
+    end
+
+    def logged_in?
+      session[:user_id]
+    end
+  end
+  
   get "/" do
     erb :index
   end
