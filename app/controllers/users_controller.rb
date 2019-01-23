@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if !(params.has_value?(""))
-      user = User.create(params)
+      @user = User.create(params)
 
       erb :'/players/players'
     else

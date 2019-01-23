@@ -1,0 +1,30 @@
+<h2>Add a Player</h2>
+
+<form action="/players" method="POST">
+  <label>Player Name:</label>
+  <input type="text" name="name">
+  <br>
+
+  <br/>
+  <label>Team:</label>
+  <input type="text" name="team"> <label>Or select existing</label>
+  <select>
+    <% @players.each do |player| %>
+    <option><%= player.team %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <br/>
+  <label>Cost:</label>
+  <input type="text" name="cost">
+  <br>
+
+  <br/>
+  <label>Quantity</label>
+  <input type="number" name="quantity" min="1" max="100">
+  <br>
+
+  <br/>
+  <input type="submit" value="Add Player">
+</form>

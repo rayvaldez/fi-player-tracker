@@ -1,1 +1,8 @@
 <h2>All Players</h2>
+
+<ul>
+<% @players.each do |player| %>
+<li><%= player.name %> <%= player.team %> <%= player.cost %> <%= player.quantity %></li>
+<% end %>
+
+</ul>
