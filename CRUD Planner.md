@@ -92,7 +92,7 @@ BONUS - Display validation failures to user with error messages.
 
 ## Football Index Player Tracker - Structure
 
-###Model
+### Model
 user.rb // User - will have a username, email and password(digest)
           has_many :players
 
@@ -100,7 +100,7 @@ player.rb // Player - will have a name, a team, a price per future(share),
           futures bought and a timestamp for when the shares were bought.
           belongs_to :user
 
-###Views
+### Views
 index.erb // Loads a page where a user can sign up or login to the app
 
 layout.erb // Contains the html structure for the website
@@ -115,7 +115,7 @@ layout.erb // Contains the html structure for the website
     create_user.erb // Create a new user, with a username, email and password
     login.erb // Login with an existing account
 
-###Controllers
+### Controllers
 application controller // Class Application controller, require environment,
                           configure public folder, views, sessions
                           get '/'
