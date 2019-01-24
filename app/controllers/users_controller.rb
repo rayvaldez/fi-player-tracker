@@ -16,6 +16,19 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/login' do
+    if logged_in?
+      redirect '/players'
+    else
+      erb :'/users/login'
+    end
+  end
+
+  post '/login' do
+    login(params["email"], params["password"])
+  end
+
+
   get '/logout' do
     session.destroy
     redirect '/'

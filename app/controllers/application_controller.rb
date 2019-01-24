@@ -17,8 +17,18 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       session[:user_id]
     end
+
+    def login(email, password)
+      user = User.find_by(email: params["email"])
+      if user && user.authenticate(password)
+        session[:user_id] = user.id
+        redirect '/players'
+      else
+        redirect '/login'
+      end
+    end
   end
-  
+
   get "/" do
     erb :index
   end
