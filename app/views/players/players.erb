@@ -2,9 +2,13 @@
 
 <ul>
   <% @players.each do |player| %>
-  <% if player.user_id == current_user.id %>
-  <li><a href="/players/<%= player.id %>"><%= player.name %></a> <%= player.team %> <%= player.cost %> <%= player.quantity %></li>
+    <% if player.user_id == current_user.id %>
+      <li><a href="/players/<%= player.id %>"><%= player.name %></a> <%= player.team %> <%= player.cost %> <%= player.quantity %> <%= player.created_at %></li>
+    <% end %>
   <% end %>
-  <% end %>
-
 </ul>
+<br>
+
+
+</br>
+<p><a href="/players/new">Click here</a>to add a player</p>

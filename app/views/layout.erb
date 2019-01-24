@@ -50,11 +50,11 @@
   <body>
     <% if logged_in? %>
     <div class="topnav">
-      <a href="/index"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
-      <a href="/players/players">My Players</a>
+      <a href=""><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
+      <a href="/players">My Players</a>
       <a href="/players/new">Add Player</a>
       <a href="/logout">Log Out</a>
-      <a href="/players"><i>Logged in as <%= current_user.username %></i></%></a>
+      <i>Logged in as <%= current_user.username %></i>
     </div>
     <% end %>
     <div class="wrapper">
