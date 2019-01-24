@@ -12,6 +12,8 @@ class PlayersController < ApplicationController
 
   post '/players' do
     @player = Player.create(params)
+    @player.user_id = current_user.id
+    @player.save
     redirect '/players'
   end
 end

@@ -1,8 +1,10 @@
-<h2>All Players</h2>
+<h2>All Players for <i><%= current_user.username %></i></h2>
 
 <ul>
-<% @players.each do |player| %>
-<li><%= player.name %> <%= player.team %> <%= player.cost %> <%= player.quantity %></li>
-<% end %>
+  <% @players.each do |player| %>
+  <% if player.user_id == current_user.id %>
+  <li><a href="/players/<%= player.id %>"><%= player.name %></a> <%= player.team %> <%= player.cost %> <%= player.quantity %></li>
+  <% end %>
+  <% end %>
 
 </ul>
