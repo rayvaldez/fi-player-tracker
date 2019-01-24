@@ -35,4 +35,18 @@ class PlayersController < ApplicationController
     @player.destroy
     redirect '/players'
   end
+
+  get '/players/:id/edit' do
+    @player = Player.find_by_id(params[:id])
+    erb :'/players/edit'
+  end
+
+  patch '/players/:id' do
+    @player = Player.find_by_id(params[:id])
+    @player.team = params[:team]
+    @player.cost = params[:cost]
+    @player.quantity = params[:quantity]
+    @player.save
+    redirect to "/players/#{@player.id}"
+  end
 end

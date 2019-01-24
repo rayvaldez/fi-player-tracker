@@ -2,7 +2,11 @@
 
 <p>Team: <%= @player.team %> Cost: <%= @player.cost %> Quantity: <%= @player.quantity %> Bought on: <%= @player.created_at %></p>
 
+<form action="/players/<%= @player.id %>/edit" method="GET">
+  <input type="submit" value="Edit">
+</form>
+
 <form action="/players/<%= @player.id %>/delete" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
+  <input type="submit" value="Delete">
 </form>
