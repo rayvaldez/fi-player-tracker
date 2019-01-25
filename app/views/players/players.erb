@@ -1,14 +1,31 @@
 <h2>All Players for <i><%= current_user.username %></i></h2>
 
-<ul>
-  <% @players.each do |player| %>
-    <% if player.user_id == current_user.id %>
-      <li><a href="/players/<%= player.id %>"><%= player.name %></a> <%= player.team %> <%= player.cost %> <%= player.quantity %> <%= player.created_at %></li>
-    <% end %>
-  <% end %>
-</ul>
-<br>
 
+<table class="player_table" style="width: 100%;" >
+  <tbody>
+  <tr>
+    <th>Player</th>
+    <th>Team</th>
+    <th>Cost</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Bought on</th>
+  </tr>
+  <% @players.each do |player| %>
+  <% if player.user_id == current_user.id %>
+  <tr>
+    <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
+    <td><%= player.team %></td>
+    <td><%= player.cost %></td>
+    <td><%= player.quantity %></td>
+    <td><%= player.cost / player.quantity %></td>
+    <td><%= player.created_at.strftime("%Y-%m-%d") %></td>
+  </tr>
+  <% end %>
+  <% end %>
+</tbody>
+</table>
+<br>
 
 
 </br>

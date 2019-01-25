@@ -1,6 +1,23 @@
 <h2><%= @player.name %></h2>
 
-<p>Team: <%= @player.team %> Cost: <%= @player.cost %> Quantity: <%= @player.quantity %> Bought on: <%= @player.created_at %></p>
+<table class="player_table" style="width: 100%;" >
+  <tbody>
+  <tr>
+    <th>Team</th>
+    <th>Cost</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Bought on</th>
+  </tr>
+  <tr>
+    <td><%= @player.team %></td>
+    <td><%= @player.cost %></td>
+    <td><%= @player.quantity %></td>
+    <td><%= @player.cost / @player.quantity %></td>
+    <td><%= @player.created_at.strftime("%Y-%m-%d") %></td>
+  </tr>
+  </tbody>
+</table>
 
 <form action="/players/<%= @player.id %>/edit" method="GET">
   <input type="submit" value="Edit">

@@ -83,6 +83,15 @@
   }
 }
 
+  table.player_table {
+    text-align: center;
+  }
+
+  table.player_table thead th {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
 @media screen and (max-width: 600px) {
   .wrapper {
     -moz-box-shadow: none;
