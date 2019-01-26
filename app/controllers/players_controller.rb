@@ -2,6 +2,12 @@ class PlayersController < ApplicationController
 
   get '/players' do
     @players = Player.all
+    @user_players = []
+      @players.each do |player|
+        if player.user_id == current_user.id
+          @user_players << player
+        end
+      end 
     erb :'/players/players'
   end
 
