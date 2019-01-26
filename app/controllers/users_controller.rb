@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   post '/signup' do
     if !(params.has_value?(""))
       @user = User.create(params)
+      @players = Player.all
       session[:user_id] = @user.id
 
       erb :'/players/players'

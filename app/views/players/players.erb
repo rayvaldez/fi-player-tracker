@@ -16,10 +16,10 @@
   <tr>
     <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
     <td><%= player.team %></td>
-    <td><%= player.cost %></td>
+    <td>£<%= '%.2f' % player.cost %></td>
     <td><%= player.quantity %></td>
-    <td><%= player.cost / player.quantity %></td>
-    <td><%= player.created_at.strftime("%Y-%m-%d") %></td>
+    <td>£<%= (player.cost / player.quantity).round(2) %></td>
+    <td><%= player.created_at.strftime("%d-%m-%Y") %></td>
   </tr>
   <% end %>
   <% end %>
@@ -29,4 +29,4 @@
 
 
 </br>
-<p><a href="/players/new">Click here</a>to add a player</p>
+<p><a href="/players/new">Click here</a> to add a player</p>
