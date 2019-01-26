@@ -30,7 +30,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :index
+    if logged_in?
+      redirect '/players'
+    else
+      erb :index
+    end
   end
 
 end

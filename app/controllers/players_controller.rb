@@ -1,14 +1,17 @@
 class PlayersController < ApplicationController
 
   get '/players' do
-    @players = Player.all
-    @user_players = []
-      @players.each do |player|
+    if logged_in?
+      @user_players = []
+        Player.all.each do |player|
         if player.user_id == current_user.id
           @user_players << player
         end
-      end 
-    erb :'/players/players'
+      end
+      erb :'/players/players'
+    else
+      redirect 'index'
+    end
   end
 
   get '/players/new' do
