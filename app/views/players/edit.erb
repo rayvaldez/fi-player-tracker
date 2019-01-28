@@ -2,8 +2,8 @@
 
 <form action="/players/<%= @player.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <label for="team">Team:</label><input type="text" name="team">
-  <label for="cost">Cost:</label><input type="integer" name="cost">
-  <label for="quantity">Quantity:</label><input type="number" name="quantity" min="1" max="100">
+  <label for="team">Team:</label><input type="text" name="team" placeholder="<%= @player.team %>" required>
+  <label for="cost">Cost:</label><input type="text" pattern="^\d+(?:\.\d{0,2})$" name="cost" placeholder="<%= @player.cost %>"required>
+  <label for="quantity">Quantity:</label><input type="number" name="quantity" min="1" max="100" placeholder="<%= @player.quantity %>" required>
   <input type="submit" value="Update">
 </form>
