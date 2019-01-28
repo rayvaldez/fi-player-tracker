@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td><%= @player.team %></td>
-    <td>£<%= (@player.cost / @player.quantity).round(2) %></td>
+    <td>£<%= '%.2f' % (@player.cost / @player.quantity).round(2) %></td>
     <td>£<%= '%.2f' % ((@player.cost / @player.quantity) * 1.02) %></td>
     <td><%= @player.quantity %></td>
     <td>£<%= '%.2f' % @player.cost %></td>

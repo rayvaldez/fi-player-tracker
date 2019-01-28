@@ -1,4 +1,12 @@
 <h2>Add a Player</h2>
+<% if flash.has?(:error) %>
+  <%= flash[:error] %>
+  <% elsif flash.has?(:message) %>
+  <%= flash[:message] %>
+  <br>
+
+  <br/>
+<% end %>
 
 <form action="/players" method="POST">
   <label>Player Name:</label>
@@ -7,17 +15,12 @@
 
   <br/>
   <label>Team:</label>
-  <input type="text" name="team"> <label>Or select existing</label>
-  <select>
-    <% @players.each do |player| %>
-    <option><%= player.team %></option>
-    <% end %>
-  </select>
+  <input type="text" name="team">
   <br>
 
   <br/>
   <label>Cost:</label>
-  <input type="text" name="cost">
+  <input type="text" pattern="^\d+(?:\.\d{0,2})$" name="cost">
   <br>
 
   <br/>

@@ -2,13 +2,18 @@ class PlayersController < ApplicationController
 
   get '/players' do
     if logged_in?
-      @user_players = []
-        Player.all.each do |player|
-        if player.user_id == current_user.id
-          @user_players << player
+      @player_array = []
+      Player.all.each do |p|
+        if p.user_id == current_user.id
+          @player_array << p
         end
       end
+      if @player_array.empty?
+        flash[:message] = "You are not tracking any Players!"
+        redirect '/players/new'
+      else
       erb :'/players/players'
+      end
     else
       redirect 'index'
     end
@@ -20,10 +25,15 @@ class PlayersController < ApplicationController
   end
 
   post '/players' do
-    @player = Player.create(params)
-    @player.user_id = current_user.id
-    @player.save
-    redirect '/players'
+    if !(params.has_value?(""))
+      @player = Player.create(params)
+      @player.user_id = current_user.id
+      @player.save
+      redirect '/players'
+    else
+      flash[:error] = "Please fill in all fields"
+      redirect '/players/new'
+    end
   end
 
   get '/players/:id' do

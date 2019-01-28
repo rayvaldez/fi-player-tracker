@@ -1,6 +1,5 @@
 <h2>All Players for <i><%= current_user.username %></i></h2>
 
-<% if @user_players.size > 0 %>
     <table class="player_table" style="width: 100%;" >
       <tbody>
       <tr>
@@ -11,7 +10,7 @@
         <th>Price</th>
         <th>Bought on</th>
       </tr>
-      <% @user_players.each do |player| %>
+      <% @player_array.each do |player| %>
       <tr>
         <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
         <td><%= player.team %></td>
@@ -20,12 +19,9 @@
         <td>£<%= (player.cost / player.quantity).round(2) %></td>
         <td><%= player.created_at.strftime("%d-%m-%Y") %></td>
       </tr>
-    <% end %>
+      <% end %>
   </tbody>
   </table>
-  <% else %>
-    <p>You are not currently tracking any players!</p>
-  <% end %>
 
 <br>
 
