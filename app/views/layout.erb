@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <% if !logged_in? %>
-    <a href="/index"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
+    <a href="/"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
     <% end %>
     <style>
       body {
@@ -54,7 +54,6 @@
       <a href="/players">My Players</a>
       <a href="/players/new">Add Player</a>
       <a href="/logout">Log Out</a>
-      <i>Logged in as <%= current_user.username %></i>
     </div>
     <% end %>
     <div class="wrapper">
@@ -63,6 +62,9 @@
 
       <footer class="branding">
         <small>&copy; 2019 <strong>Football Index Player Tracker</strong></small>
+        <% if logged_in? %>
+        <small>--  <strong><i>Logged in as <%= current_user.username %></i></strong> --</small>
+        <% end %>
       </footer>
     </div>
 

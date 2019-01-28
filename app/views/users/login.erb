@@ -1,5 +1,7 @@
 <h2>Log In</h2>
-
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 <form action="/login" method="POST">
   <label>Email: </label>
   <input type="email" name="email">
@@ -12,4 +14,5 @@
   <br><br>
 
   <input type="submit" value="Login">
+
 </form>

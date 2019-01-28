@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -7,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "football_index"
+    use Rack::Flash
   end
 
   helpers do
@@ -24,6 +26,7 @@ class ApplicationController < Sinatra::Base
         session[:user_id] = user.id
         redirect '/players'
       else
+        flash[:message] = "Please provide a valid email/password combination."
         redirect '/login'
       end
     end

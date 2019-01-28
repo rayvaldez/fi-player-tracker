@@ -1,4 +1,10 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+
+  configure do
+    use Rack::Flash
+  end
 
   get '/signup' do
     if logged_in?
@@ -16,6 +22,7 @@ class UsersController < ApplicationController
 
       erb :'/players/players'
     else
+      flash[:message] = "Error! All fields are required."
       redirect '/signup'
     end
   end
