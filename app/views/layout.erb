@@ -5,8 +5,9 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <% if !logged_in? %>
-    <a href="/"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
+    <a href="/"><img src="/images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
     <% end %>
+
     <style>
       body {
         margin: 0;
@@ -50,7 +51,7 @@
   <body>
     <% if logged_in? %>
     <div class="topnav">
-      <a href="/players"><img src="images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
+      <a href="/players"><img src="/images/fi.png" width="270" height="70" alt="Football Index Player Tracker"></a>
       <a href="/players">My Players</a>
       <a href="/players/new">Add Player</a>
       <a href="/logout">Log Out</a>
