@@ -3,17 +3,8 @@ class PlayersController < ApplicationController
   get '/players' do
     if logged_in?
       @player_array = []
-      Player.all.each do |p|
-        if p.user_id == current_user.id
-          @player_array << p
-        end
-      end
-      if @player_array.empty?
-        flash[:message] = "You are not tracking any Players!"
-        redirect '/players/new'
-      else
+      @players = Player.all
       erb :'/players/players'
-      end
     else
       redirect '/login'
     end

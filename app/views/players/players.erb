@@ -1,5 +1,4 @@
 <h2>All Players for <i><%= current_user.username %></i></h2>
-
     <table class="player_table" style="width: 100%;" >
       <tbody>
       <tr>
@@ -10,21 +9,24 @@
         <th>Price</th>
         <th>Bought on</th>
       </tr>
-      <% @player_array.each do |player| %>
-      <tr>
-        <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
-        <td><%= player.team %></td>
-        <td>£<%= '%.2f' % player.cost %></td>
-        <td><%= player.quantity %></td>
-        <td>£<%= (player.cost / player.quantity).round(2) %></td>
-        <td><%= player.created_at.strftime("%d-%m-%Y") %></td>
-      </tr>
+      <% @players.each do |player| %>
+        <% if player.user_id == current_user.id %>
+        <% @player_array << player %>
+        <tr>
+          <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
+          <td><%= player.team %></td>
+          <td>£<%= '%.2f' % player.cost %></td>
+          <td><%= player.quantity %></td>
+          <td>£<%= (player.cost / player.quantity).round(2) %></td>
+          <td><%= player.created_at.strftime("%d-%m-%Y") %></td>
+        </tr>
+        <% end %>
       <% end %>
   </tbody>
   </table>
-
-<br>
-
-
-</br>
-<p><a href="/players/new">Click here</a> to add a player</p>
+  <br>
+  </br>
+  <% if @player_array.empty? %>
+  <p>You are currently not tracking any Players!</p>
+  <% end %>
+  <p><a href="/players/new">Click here</a> to add a player</p>
