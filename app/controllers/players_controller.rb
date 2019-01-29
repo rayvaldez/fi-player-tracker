@@ -15,13 +15,17 @@ class PlayersController < ApplicationController
       erb :'/players/players'
       end
     else
-      redirect 'index'
+      redirect '/login'
     end
   end
 
   get '/players/new' do
-    @players = Player.all
-    erb :'players/new'
+    if logged_in?
+      @players = Player.all
+      erb :'players/new'
+    else
+      redirect '/login'
+    end
   end
 
   post '/players' do
@@ -56,8 +60,12 @@ class PlayersController < ApplicationController
   end
 
   get '/players/:id/edit' do
-    @player = Player.find_by_id(params[:id])
-    erb :'/players/edit'
+    if logged_in?
+      @player = Player.find_by_id(params[:id])
+      erb :'/players/edit'
+    else
+      redirect '/login'
+    end
   end
 
   patch '/players/:id' do
