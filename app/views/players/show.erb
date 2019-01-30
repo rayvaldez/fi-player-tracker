@@ -8,7 +8,9 @@
     <th>Target Sell Price</th>
     <th>Quantity</th>
     <th>Total Cost</th>
+    <th>Commission</th>
     <th>Bought on</th>
+    <th>Updated on</th>
   </tr>
   <tr>
     <td><%= @player.team %></td>
@@ -16,7 +18,11 @@
     <td>£<%= '%.2f' % ((@player.cost / @player.quantity) * 1.02) %></td>
     <td><%= @player.quantity %></td>
     <td>£<%= '%.2f' % @player.cost %></td>
-    <td><%= @player.created_at.strftime("%d-%m-%Y") %></td>
+    <td>£<%= '%.2f' % (@player.cost * 0.02) %></td>
+    <td><%= @player.created_at.strftime("%R %d-%m-%Y") %></td>
+    <% if @player.updated_at.strftime("%R %d-%m-%Y") != @player.created_at.strftime("%R %d-%m-%Y")%>
+    <td><%= @player.updated_at.strftime("%R %d-%m-%Y") %></td>
+    <% end %>
   </tr>
   </tbody>
 </table>

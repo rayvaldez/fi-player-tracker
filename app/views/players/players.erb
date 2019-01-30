@@ -3,22 +3,20 @@
       <tbody>
       <tr>
         <th>Player</th>
+        <th>Price</th>
         <th>Team</th>
         <th>Cost</th>
         <th>Quantity</th>
-        <th>Price</th>
-        <th>Bought on</th>
       </tr>
       <% @players.each do |player| %>
         <% if player.user_id == current_user.id %>
         <% @player_array << player %>
         <tr>
           <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
+          <td>£<%= (player.cost / player.quantity).round(2) %></td>
           <td><%= player.team %></td>
           <td>£<%= '%.2f' % player.cost %></td>
           <td><%= player.quantity %></td>
-          <td>£<%= (player.cost / player.quantity).round(2) %></td>
-          <td><%= player.created_at.strftime("%d-%m-%Y") %></td>
         </tr>
         <% end %>
       <% end %>
