@@ -3,7 +3,11 @@ class PlayersController < ApplicationController
   get '/players' do
     if logged_in?
       @player_array = []
-      @players = Player.all
+      Player.all.each do |player|
+        if player.user_id == current_user.id
+          @player_array << player
+        end
+      end
       erb :'/players/players'
     else
       redirect '/login'
@@ -13,7 +17,7 @@ class PlayersController < ApplicationController
   get '/players/new' do
     if logged_in?
       @players = Player.all
-      erb :'players/new'
+      erb :'/players/new'
     else
       redirect '/login'
     end
@@ -26,7 +30,7 @@ class PlayersController < ApplicationController
       @player.save
       redirect '/players'
     else
-      flash[:error] = "Please fill in all fields"
+      flash[:message] = "Please fill in all fields"
       redirect '/players/new'
     end
   end

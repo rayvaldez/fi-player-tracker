@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
         redirect '/players'
       else
         flash[:message] = "Please provide a valid email/password combination."
-        redirect '/login'
+        erb :'/users/login'
       end
     end
   end

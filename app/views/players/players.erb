@@ -1,30 +1,29 @@
 <h2>All Players for <i><%= current_user.username %></i></h2>
-    <table class="player_table" style="width: 100%;" >
-      <tbody>
+
+<% if @player_array != nil %>
+  <table class="player_table" style="width: 100%;" >
+    <tbody>
+    <tr>
+      <th>Player</th>
+      <th>Price</th>
+      <th>Team</th>
+      <th>Cost</th>
+      <th>Quantity</th>
+    </tr>
+    <% @player_array.each do |player| %>
       <tr>
-        <th>Player</th>
-        <th>Price</th>
-        <th>Team</th>
-        <th>Cost</th>
-        <th>Quantity</th>
+        <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
+        <td>£<%= '%.2f' % (player.cost / player.quantity).round(2) %></td>
+        <td><%= player.team %></td>
+        <td>£<%= '%.2f' % player.cost %></td>
+        <td><%= player.quantity %></td>
       </tr>
-      <% @players.each do |player| %>
-        <% if player.user_id == current_user.id %>
-        <% @player_array << player %>
-        <tr>
-          <td><a href="/players/<%= player.id %>"><%= player.name %></a></td>
-          <td>£<%= (player.cost / player.quantity).round(2) %></td>
-          <td><%= player.team %></td>
-          <td>£<%= '%.2f' % player.cost %></td>
-          <td><%= player.quantity %></td>
-        </tr>
-        <% end %>
-      <% end %>
-  </tbody>
-  </table>
+    <% end %>
+    </tbody>
+    </table>
+    <% else %>
+    <p>You are not tracking any Players.</p>
+  <% end %>
   <br>
   </br>
-  <% if @player_array.empty? %>
-  <p>You are currently not tracking any Players!</p>
-  <% end %>
   <p><a href="/players/new">Click here</a> to add a player</p>

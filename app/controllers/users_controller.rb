@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       erb :'/players/players'
     else
       flash[:message] = "Error! All fields are required."
-      redirect '/signup'
+      erb :'/users/signup'
     end
   end
 
