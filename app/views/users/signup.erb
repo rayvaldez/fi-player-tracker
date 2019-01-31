@@ -1,6 +1,11 @@
 <h2>Sign Up</h2>
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
+<% if @user.errors.any? %>
+  <h4>Error!</h4>
+  <% @user.errors.full_messages.each do |error| %>
+  <ul>
+    <li><%= error %></li>
+  </ul>
+  <% end %>
 <% end %>
 <form action="/signup" method="POST">
   <label>Username: </label>

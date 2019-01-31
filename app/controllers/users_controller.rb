@@ -15,14 +15,12 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if !(params.has_value?(""))
-      @user = User.create(params)
-      @players = Player.all
+    @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+    if @user.valid?
+      @user.save
       session[:user_id] = @user.id
-
       erb :'/players/players'
     else
-      flash[:message] = "Error! All fields are required."
       erb :'/users/signup'
     end
   end
