@@ -1,9 +1,16 @@
 <h2>Edit <%= @player.name %></h2>
-
+<% if @player.errors.any? %>
+  <h4>Error!</h4>
+  <% @player.errors.full_messages.each do |error| %>
+  <ul>
+    <li><%= error %></li>
+  </ul>
+  <% end %>
+<% end %>
 <form action="/players/<%= @player.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <label for="team">Team:</label><input type="text" name="team" placeholder="<%= @player.team %>" required>
-  <label for="cost">Cost:</label><input type="text" pattern="^\d+(?:\.\d{0,2})$" name="cost" placeholder="<%= @player.cost %>"required>
-  <label for="quantity">Quantity:</label><input type="number" name="quantity" min="1" max="100" placeholder="<%= @player.quantity %>" required>
+  <label for="team">Team:</label><input type="text" name="team" placeholder="<%= @player.team %>">
+  <label for="cost">Cost:</label><input type="text" pattern="^\d+(?:\.\d{0,2})$" name="cost" placeholder="<%= @player.cost %>">
+  <label for="quantity">Quantity:</label><input type="number" name="quantity" min="1" max="100" placeholder="<%= @player.quantity %>">
   <input type="submit" value="Update">
 </form>

@@ -17,6 +17,7 @@ class PlayersController < ApplicationController
   get '/players/new' do
     if logged_in?
       @players = Player.all
+      @player = Player.new
       erb :'/players/new'
     else
       redirect '/login'
@@ -24,14 +25,13 @@ class PlayersController < ApplicationController
   end
 
   post '/players' do
-    if !(params.has_value?(""))
-      @player = Player.create(params)
+    @player = Player.new(:name => params[:name], :team => params[:team], :cost => params[:cost], :quantity => params[:quantity])
+    if @player.valid?
       @player.user_id = current_user.id
       @player.save
       redirect '/players'
     else
-      flash[:message] = "Please fill in all fields"
-      redirect '/players/new'
+      erb :'/players/new'
     end
   end
 
@@ -68,7 +68,11 @@ class PlayersController < ApplicationController
     @player.team = params[:team]
     @player.cost = params[:cost]
     @player.quantity = params[:quantity]
-    @player.save
-    redirect to "/players/#{@player.id}"
+    if @player.valid?
+      @player.save
+      redirect to "/players/#{@player.id}"
+    else
+      erb :'players/edit'
+    end
   end
 end

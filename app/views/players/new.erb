@@ -1,9 +1,11 @@
 <h2>Add a Player</h2>
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-  <br>
-
-  <br/>
+<% if @player.errors.any? %>
+  <h4>Error!</h4>
+  <% @player.errors.full_messages.each do |error| %>
+  <ul>
+    <li><%= error %></li>
+  </ul>
+  <% end %>
 <% end %>
 
 <form action="/players" method="POST">

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect '/players'
     else
+      @user = User.new
       erb :'users/signup'
     end
   end
