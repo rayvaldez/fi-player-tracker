@@ -16,7 +16,6 @@ class PlayersController < ApplicationController
 
   get '/players/new' do
     if logged_in?
-      @players = Player.all
       @player = Player.new
       erb :'/players/new'
     else
@@ -57,7 +56,11 @@ class PlayersController < ApplicationController
   get '/players/:id/edit' do
     if logged_in?
       @player = Player.find_by_id(params[:id])
-      erb :'/players/edit'
+        if @player.user_id == current_user.id
+          erb :'/players/edit'
+        else
+          redirect '/players'
+        end
     else
       redirect '/login'
     end
