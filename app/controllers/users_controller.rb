@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      erb :'/players/players'
+      redirect '/players'
     else
       erb :'/users/signup'
     end

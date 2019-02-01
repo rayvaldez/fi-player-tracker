@@ -29,7 +29,7 @@ class PlayersController < ApplicationController
     if @player.valid?
       @player.user_id = current_user.id
       @player.save
-      redirect '/players'
+      redirect "/players/#{@player.id}"
     else
       erb :'/players/new'
     end
